@@ -6,12 +6,15 @@ import Todo from "../Todo";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 
 // action
-import { addTodo } from "../../redux/actions";
+// import { addTodo } from "../../redux/actions";
 // import { todoListSelector } from "../../redux/selectors";// lấy selector
 import { todoRemainingSelector } from "../../redux/selectors";
 
 // id ngẫu nhiên từ uuid
 import { v4 as uuidv4 } from "uuid";
+
+// redux/toolkit
+import todoListReducerSlice from "./todoReducerSlice";
 
 export default function TodoList() {
   const [todoName, setTodoName] = useState("");
@@ -27,7 +30,7 @@ export default function TodoList() {
 
   const handleOnClickAddTodoList = () => {
     dispatch(
-      addTodo({
+      todoListReducerSlice.actions.addTodo({
         id: uuidv4(),
         name: todoName,
         prioriry: prioriry,

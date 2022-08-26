@@ -3,7 +3,10 @@ import { useState } from "react";
 
 // gửi dispatch đi
 import { useDispatch } from "react-redux";
-import { searchFilterChanges, statusFilterChanges, prioritiesFilterChanges } from "../../redux/actions";
+// import { searchFilterChanges, statusFilterChanges, prioritiesFilterChanges } from "../../redux/actions";
+
+// redux/toolkit lấy giá trị
+import filtersSlice from "./filterReducerSlice";
 
 const { Search } = Input;
 
@@ -16,18 +19,21 @@ export default function Filters() {
 
   const handleSearchTextChange = (e) => {
     setSearchText(e.target.value);
-    dispatch(searchFilterChanges(e.target.value));
+    // dispatch(searchFilterChanges(e.target.value));
+    dispatch(filtersSlice.actions.searchFilterChanges(e.target.value));
   };
 
   const handleStatusChange = (e) => {
     setFilterStatus(e.target.value);
-    dispatch(statusFilterChanges(e.target.value));
+    // dispatch(statusFilterChanges(e.target.value));
+    dispatch(filtersSlice.actions.statusFilterChanges(e.target.value));
   };
 
   const handlePrioritiesChange = (value) => {
-    setFilterPriorities(value)
-    dispatch(prioritiesFilterChanges(value));
-  }
+    setFilterPriorities(value);
+    // dispatch(prioritiesFilterChanges(value));
+    dispatch(filtersSlice.actions.prioritiesFilterChanges(value));
+  };
 
   return (
     <Row justify="center">

@@ -3,7 +3,8 @@ import { useState } from "react";
 
 // dispatch: gửi đi cập nhât lại
 import { useDispatch } from "react-redux";
-import { toggleTodoStatus } from "../../redux/actions";
+// import { toggleTodoStatus } from "../../redux/actions";
+import TodoListSlice from "../TodoList/todoReducerSlice";
 
 const priorityColorMapping = {
   High: "red",
@@ -11,14 +12,15 @@ const priorityColorMapping = {
   Low: "gray",
 };
 
-export default function Todo({id, name, prioriry, completed }) {
+export default function Todo({ id, name, prioriry, completed }) {
   const [checked, setChecked] = useState(completed);
 
   const dispatch = useDispatch();
 
   const toggleCheckbox = () => {
     setChecked(!checked);
-    dispatch(toggleTodoStatus(id))// cài đặt lại toggle cho todo có id = ...
+    //dispatch(toggleTodoStatus(id))// cài đặt lại toggle cho todo có id = ...
+    dispatch(TodoListSlice.actions.toggleTodoStatus(id));
   };
 
   return (
